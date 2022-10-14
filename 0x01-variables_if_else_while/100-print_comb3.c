@@ -1,32 +1,43 @@
 #include <stdio.h>
 
 /**
- * main - multiple for loops
- * Return: tens and ones
-*/
+ *main - print a num pair from 00-99 but no repeats (00 01, 00 02, 00 03,...)
+ *Return: Always 0 (Success)
+ */
 
 int main(void)
 {
-	int ones = '0';
-
 	int tens;
+	int ones;
+	int t;
+	int o;
 
-	for (; ones <= '9'; ones++)
+	for (tens = '0'; tens <= '9'; tens++)
 	{
-		for (tens = (ones + 1); tens <= '9'; tens++)
+		for (ones = '0'; ones <= '9'; ones++)
 		{
-			putchar(ones);
-			putchar(tens);
-
-			if (tens != '9' || ones != '8')
+			for (t = tens; t <= '9'; t++)
 			{
-				putchar(',');
-				putchar(' ');
+				for (o = ones + 1; o <= '9'; o++)
+				{
+					putchar(tens);
+					putchar(ones);
+					putchar(' ');
+					putchar(t);
+					putchar(o);
+
+					if (!((tens == '9' && ones == '8') &&
+					      (t == '9' && o == '9')))
+					{
+						putchar(',');
+						putchar(' ');
+					}
+				}
+				o = '0';
 			}
 		}
 	}
-
 	putchar('\n');
+
 	return (0);
 }
-
