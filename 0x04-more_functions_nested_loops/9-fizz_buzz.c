@@ -1,5 +1,5 @@
 #include "main.h"
-
+#include <stdio.h>
 /**
  * main -> print fizz, buzz and fizzbuzz
  * Return: success
