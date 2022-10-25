@@ -7,6 +7,7 @@
 int main(void) {
 
      int length;
+     int i;
      printf("Enter length of the password you want:\n");
      scanf("%d", &length);
      if (length <= 1 )
@@ -27,7 +28,7 @@ int main(void) {
      int symbol_length = strlen(symbol);
 
      srand (time(NULL) * getpid());
-     int i;
+    
      for (i = 0; i < length; i++)
      {
         int char_type = rand() % 4;
