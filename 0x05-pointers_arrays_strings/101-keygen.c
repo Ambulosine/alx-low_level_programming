@@ -1,29 +1,54 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <time.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 
-/**
- * keygen.c -> this function generate random pwd
- * Return: success
- */
+int _str_length () {
 
-int main(void)
-{
-	int counter = 0;
+     int length;
+     printf("Enter length of the password you want:\n");
+     scanf("%d", &length);
+     if (length <= 1 )
 
-	srand (time(NULL));
-	char randChar;
-	int  passwordLength;
+     {
+          printf("password length must be greater than 1\n");
+          return 1;
+     }
+     char *password = malloc(length + 1);
 
-	printf("Type in a password Length \n");
-	scanf("%d", &passwordLength);
+     // char password[length + 1];
+     char *digit = "0123456789";
+     int digit_length = strlen(digit);
+     char *lowers = "abcdefghijklmnopqrstuvxwz";
+     int lower_length = strlen(lowers);
+     char *uppers = "ABCDEFGHIJKLMNOPQRSTUVXWYZ";
+     int upper_length = strlen(uppers);
+     char *symbol = "@#$%&^*()&";
+     int symbol_length = strlen(symbol);
 
-	while(counter < passwordLength)
-	{   //seed random based on time
-		//srand(time(NULL));
-	randChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"[random () % 62];
-	printf("%c", randChar);
-	counter++;
-    }
-    return 0;
+     srand (time(NULL) * getpid());
+     for (int i = 0; i < length; i++)
+     {
+        int char_type = rand() % 4;
+        if (char_type == 0)
+            password[i] = digit[rand() % digit_length];
+        else if (char_type == 1)
+            password[i] = lowers[rand() % lower_length];
+        else if (char_type == 3)
+            password[i] = uppers[rand() % upper_length];
+        else
+            password[i] = symbol[rand() % symbol_length];
+     }
+     password[length] = '\0';
+     printf("Password: %s\n", password);
+     free (password);
+     return (0);
 }
+
+
+int main()
+{
+     int save = _str_length();
+}
+
