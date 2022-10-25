@@ -4,7 +4,7 @@
 #include <string.h>
 #include <unistd.h>
 
-int _str_length () {
+int main(void) {
 
      int length;
      printf("Enter length of the password you want:\n");
@@ -15,9 +15,8 @@ int _str_length () {
           printf("password length must be greater than 1\n");
           return 1;
      }
-     char *password = malloc(length + 1);
-
-     // char password[length + 1];
+   
+     char password[length + 1];
      char *digit = "0123456789";
      int digit_length = strlen(digit);
      char *lowers = "abcdefghijklmnopqrstuvxwz";
@@ -28,7 +27,8 @@ int _str_length () {
      int symbol_length = strlen(symbol);
 
      srand (time(NULL) * getpid());
-     for (int i = 0; i < length; i++)
+     int i;
+     for (i = 0; i < length; i++)
      {
         int char_type = rand() % 4;
         if (char_type == 0)
@@ -45,10 +45,3 @@ int _str_length () {
      free (password);
      return (0);
 }
-
-
-int main()
-{
-     int save = _str_length();
-}
-
