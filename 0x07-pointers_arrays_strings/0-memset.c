@@ -6,7 +6,7 @@
   * @b: a char
   * @n: an int
   *
-  * Return: the memory area filled
+  * Return: string
   */
 char *_memset(char *s, char b, unsigned int n)
 {
