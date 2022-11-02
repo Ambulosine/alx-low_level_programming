@@ -1,58 +1,53 @@
 #include "main.h"
 
-int check_palindrome(char *s);
-
+int len(char *s);
+int compare(char *s, char *sh, int mid);
 /**
-  * is_palindrome - Returns if a string is palindrome
-  * @s: the string value to be checked
-  *
-  * Return: integer value
-  */
+ * is_palindrome - checks if a given string is a palindrome
+ * @s: string
+ * Return: 1 if s is a palindrome, 0 if not
+ */
 int is_palindrome(char *s)
 {
-	if (*s == '0')
-		return (1);
+	char *sh;
+	int len_s, mid;
 
-	return (check_palindrome(s));
+	len_s = len(s);
+	mid = len_s / 2;
+	sh = s + len_s - 1;
+
+	return (compare(s, sh, mid));
 }
 
 /**
-  * check_palindrome - Check if a string is palindrome
-  * @s: the string value to be checked
-  *
-  * Return: integer value
-  */
-int check_palindrome(char *s)
+ * len - finds the length of a string
+ * @s: the string
+ * Return: length of s
+ */
+int len(char *s)
 {
-	int l = _strlen_recursion(s) - 1;
+	if (*s == 0)
+		return (0);
+	else
+		return (len(s + 1) + 1);
+}
 
-	if (*s == s[l])
+/**
+ * compare - compares half of a string to the other half
+ * @s: start of the string
+ * @sh: end of string
+ * @mid: half the length of string (midpoint)
+ * Return: 1 if equal, 0 otherwise
+ */
+int compare(char *s, char *sh, int mid)
+{
+	if (s + mid > sh)
+		return (1);
+	else if (*s == *sh)
 	{
-		s++;
-		l--;
+		mid--;
+		return (1 * compare(s + 1, sh - 1, mid));
 	}
 	else
-	{
 		return (0);
-	}
-
-	return (1);
 }
-
-/**
-  * _strlen_recursion - Get the length of a string
-  * @s: the string to get the length
-  *
-  * Return: the string length
-  */
-int _strlen_recursion(char *s)
-{
-	if (*s == '\0')
-	{
-		return (0);
-	}
-
-	s++;
-	return (_strlen_recursion(s) + 1);
-}
-
