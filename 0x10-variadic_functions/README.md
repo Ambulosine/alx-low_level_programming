@@ -1,1 +1,1 @@
-projects on variadic functions
+projects on variadic function
